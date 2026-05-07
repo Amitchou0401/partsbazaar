@@ -1,0 +1,24 @@
+{
+  "overview": "A full-featured e-commerce store for spare parts covering 9 equipment types: JCB, tractor, crane, bulldozer, car, bikes, aeroplane, scooty, and truck. Browse by equipment type, search parts by name or number, view detailed part pages with compatibility info, and complete checkout with order confirmation.",
+  "features": [
+    "Equipment-first navigation across 9 categories",
+    "Part search with autocomplete",
+    "Product detail pages with compatibility info and stock status",
+    "Shopping cart with quantity management",
+    "Checkout form with order confirmation",
+    "50+ seeded spare parts across all equipment types",
+    "Mobile-responsive layout"
+  ],
+  "category": "e-commerce",
+  "tags": [
+    "spare-parts",
+    "e-commerce",
+    "jcb",
+    "tractor",
+    "heavy-equipment",
+    "automotive",
+    "parts-catalog",
+    "shopping-cart"
+  ],
+  "last_updated": "2026-05-07T04:31:06.760Z"
+}

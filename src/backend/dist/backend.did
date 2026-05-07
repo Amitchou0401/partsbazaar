@@ -1,0 +1,85 @@
+type Timestamp = int;
+type StockStatus = 
+ variant {
+   InStock;
+   LowStock;
+   OutOfStock;
+ };
+type ShippingInfo = 
+ record {
+   addressLine1: text;
+   addressLine2: text;
+   city: text;
+   name: text;
+   phone: text;
+   pincode: text;
+   state: text;
+ };
+type PartId = nat;
+type Part = 
+ record {
+   category: text;
+   description: text;
+   equipmentType: EquipmentType;
+   id: PartId;
+   images: vec text;
+   modelCompatibility: vec text;
+   name: text;
+   partNumber: text;
+   price: nat;
+   specifications: vec record {
+                         text;
+                         text;
+                       };
+   stockStatus: StockStatus;
+ };
+type OrderStatus = 
+ variant {
+   Cancelled;
+   Confirmed;
+   Delivered;
+   Pending;
+   Shipped;
+ };
+type OrderId = nat;
+type Order = 
+ record {
+   createdAt: Timestamp;
+   id: OrderId;
+   items: vec CartItem;
+   shippingInfo: ShippingInfo;
+   status: OrderStatus;
+   total: nat;
+ };
+type EquipmentType = 
+ variant {
+   Aeroplane;
+   Bike;
+   Bulldozer;
+   Car;
+   Crane;
+   JCB;
+   Scooty;
+   Tractor;
+   Truck;
+ };
+type CartItem = 
+ record {
+   partId: PartId;
+   quantity: nat;
+ };
+service : {
+  getEquipmentModels: (equipmentType: EquipmentType) -> (vec text) query;
+  getOrder: (id: OrderId) -> (opt Order) query;
+  getPart: (id: PartId) -> (opt Part) query;
+  getPartCategories: (equipmentType: EquipmentType, model: opt text) ->
+   (vec text) query;
+  getParts: (equipmentType: opt EquipmentType, model: opt text, category:
+   opt text, searchQuery: opt text) -> (vec Part) query;
+  placeOrder: (items: vec CartItem, shippingInfo: ShippingInfo) ->
+   (variant {
+      err: text;
+      ok: OrderId;
+    });
+  searchParts: (searchQuery: text) -> (vec Part) query;
+}

@@ -1,0 +1,73 @@
+// Version: 1.0.0
+type CartItem__77207648 = {partId : PartId__419502793; quantity : Nat};
+type EquipmentType__412297131 =
+  {
+    #Aeroplane;
+    #Bike;
+    #Bulldozer;
+    #Car;
+    #Crane;
+    #JCB;
+    #Scooty;
+    #Tractor;
+    #Truck
+  };
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type OrderId__197865225 = Nat;
+type OrderStatus__393009242 =
+  {#Cancelled; #Confirmed; #Delivered; #Pending; #Shipped};
+type Order__531475322 =
+  {
+    createdAt : Timestamp__301639476;
+    id : OrderId__197865225;
+    items : [CartItem__77207648];
+    shippingInfo : ShippingInfo__647782224;
+    status : OrderStatus__393009242;
+    total : Nat
+  };
+type PartId__419502793 = Nat;
+type Part__689018539 =
+  {
+    category : Text;
+    description : Text;
+    equipmentType : EquipmentType__412297131;
+    id : PartId__419502793;
+    images : [Text];
+    modelCompatibility : [Text];
+    name : Text;
+    partNumber : Text;
+    price : Nat;
+    specifications : [(Text, Text)];
+    stockStatus : StockStatus__281012382
+  };
+type ShippingInfo__647782224 =
+  {
+    addressLine1 : Text;
+    addressLine2 : Text;
+    city : Text;
+    name : Text;
+    phone : Text;
+    pincode : Text;
+    state : Text
+  };
+type StockStatus__281012382 = {#InStock; #LowStock; #OutOfStock};
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+type Timestamp__301639476 = Time__900049286;
+actor {
+  stable orders :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Order__531475322]];
+      var elementIndex : Nat__490723111
+    };
+  stable parts :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Part__689018539]];
+      var elementIndex : Nat__490723111
+    }
+};
